@@ -1,0 +1,64 @@
+package sad.humanresourcemanagementsystem.Helper;
+
+
+import java.sql.Time;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+public class Helper {
+public static java.sql.Date stringToDate(String date) {
+	 java.sql.Date sqlDate = null;
+		 String pattern = "dd/MM/yyyy";
+		 SimpleDateFormat formatter = new SimpleDateFormat(pattern);    
+	     try {
+	          java.util.Date utilDate = formatter.parse(date);
+	          sqlDate = new java.sql.Date(utilDate.getTime());	           
+	     } catch(ParseException e) {
+	         e.printStackTrace();
+	     }
+     return sqlDate;
+}
+
+public static java.sql.Date stringToDate2(String date) {
+	 java.sql.Date sqlDate = null;
+	 String pattern = "dd-MM-yyyy";
+	 SimpleDateFormat formatter = new SimpleDateFormat(pattern);  
+     try {
+          java.util.Date utilDate = formatter.parse(date);
+          sqlDate = new java.sql.Date(utilDate.getTime());        
+     } catch(ParseException e) {
+         e.printStackTrace();
+     }
+ return sqlDate;
+}
+
+public static java.sql.Date getCurrentDate() {
+	java.util.Date utilDate = new java.util.Date();
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+	formatter.format(utilDate);
+	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+	return sqlDate;
+	
+}
+
+public static long calculateTimeDifference(Time startAt, Time endAt) {
+	return endAt.getTime() - startAt.getTime();
+}
+
+public static java.sql.Time getCurrentTime() {
+	java.util.Date utilDate = new java.util.Date();
+	DateFormat df = new SimpleDateFormat("HH:mm:ss");
+	df.format(utilDate);
+	java.sql.Time sqlTime = new java.sql.Time(utilDate.getTime());
+	return sqlTime;
+	
+}
+
+
+
+
+
+
+
+}
